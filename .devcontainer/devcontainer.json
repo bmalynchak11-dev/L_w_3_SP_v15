@@ -1,0 +1,27 @@
+{
+  "name": "Системне програмування: Python на Linux (контейнери)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "privileged": true,
+  "postCreateCommand": "pip install --user -r requirements.txt && (sudo apt-get update -qq && sudo apt-get install -y -qq strace util-linux || true)",
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt",
+    "seccomp=unconfined",
+    "--cgroupns=private"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+          "tests"
+        ],
+        "files.encoding": "utf8"
+      }
+    }
+  }
+}
